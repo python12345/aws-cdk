@@ -75,6 +75,13 @@ export interface NestedStackProps {
    * @default - No description.
    */
   readonly description?: string;
+
+  /**
+   * Name to deploy the stack with
+   *
+   * @default - Derived from construct path.
+   */
+  readonly stackName?: string;
 }
 
 /**
@@ -121,6 +128,7 @@ export class NestedStack extends Stack {
       synthesizer: new NestedStackSynthesizer(parentStack.synthesizer),
       description: props.description,
       crossRegionReferences: parentStack._crossRegionReferences,
+      stackName: props.stackName
     });
 
     this._parentStack = parentStack;
